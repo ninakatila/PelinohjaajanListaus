@@ -1,0 +1,36 @@
+create table joukkue (
+joukkuetunnusid varchar(3) not null,
+yhteyshenkilo varchar(80),
+puhelinnumero integer,
+primary key (joukkuetunnusid));
+
+
+create table pelit (
+pvmid date not null,
+joukkuetunnus varchar(3),
+nimi varchar(80),
+alkuaika timestamp,
+loppuaika timestamp,
+palkkio boolean,
+pelinohjaajanro integer,
+primary key (pvmid, joukkuetunnus),
+foreign key (joukkuetunnus) references joukkue);
+
+
+create table pelinohjaaja (
+nroid integer not null,
+nimi varchar(100),
+puhelinnumero integer,
+aktiivisuus boolean,
+primary key (nroid));
+
+
+create table ohjaaja (
+joukkuetunnus varchar(3) not null,
+pelinohjaajanro integer not null,
+primary key (joukkuetunnus, pelinohjaajanro),
+foreign key (joukkuetunnus) references joukkue,
+foreign key (pelinohjaajanro) references pelinohjaaja);
+
+/* luotu taulut postgresql:lle ja viety joukkue -tauluun yksi rivi, komennolla
+insert into joukkue (joukkuetunnusid, yhteyshenkilo, puhelinnumero) values ('P03', 'Nina Katila', 0401234567);
