@@ -32,5 +32,12 @@ primary key (joukkuetunnus, pelinohjaajanro),
 foreign key (joukkuetunnus) references joukkue,
 foreign key (pelinohjaajanro) references pelinohjaaja);
 
+
+create table kayttaja (
+tunnus varchar(8) not null,
+salasana varchar (8) not null,
+nimi varchar (100),
+primary key (tunnus));
+
 /* luotu taulut postgresql:lle ja viety joukkue -tauluun yksi rivi, komennolla
 insert into joukkue (joukkuetunnusid, yhteyshenkilo, puhelinnumero) values ('P03', 'Nina Katila', 0401234567);
